@@ -1,4 +1,4 @@
-# health-site-app
+# hakaton-frontend
 
 ## Project setup
 ```
