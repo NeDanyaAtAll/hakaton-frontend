@@ -25,7 +25,7 @@ import VoiceMessage from "./VoiceMessage.vue";
 
 export default {
     components: {
-      VoiceMessage,
+        VoiceMessage,
         ChatMessage,
         UserMessage,
     },
@@ -35,7 +35,14 @@ export default {
     },
     data: () => ({
         helloMesage: 'Вас приветсвует голосовой помощник "Цифра"'
-    })
+    }),
+    mounted() {
+      let container = document.querySelector('.chat-body-container')
+      let xH = container.scrollHeight;
+      setTimeout(() => {
+        container.scrollTop = xH;
+      }, 0)
+    }
 }
 </script>
 
