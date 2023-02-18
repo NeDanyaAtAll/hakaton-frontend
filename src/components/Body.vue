@@ -29,16 +29,22 @@ export default {
 
 <style scoped>
 .chat-body-container {
-    flex: 1;
+    flex: 1; 
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
     margin: 0.5em;
     padding: 0.5em calc(1em + 3px) 0.5em calc(0.5em + 3px);
+    padding-right: 0.5em;
     overflow-y: scroll;
+    position: relative;
 }
 
 .chat-content__dialog {
     display: flex;
     flex-flow: column;
     gap: 0.8em;
+    
 }     
     
 </style>

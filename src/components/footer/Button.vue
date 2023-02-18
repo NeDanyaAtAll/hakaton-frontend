@@ -35,14 +35,16 @@ button > span {
 }
 
 .input-button {
-    margin: 11px;
-    height: 25px;
-    width: 25px;
+    margin: 5px;
+    height: 33px;
+    width: 33px;
     background-color: #faa419;
-    border-radius: 25%;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 1px 1px 3px 0px rgb(0 0 0 / 7%)
+        
 }
 
 .material-symbols-outlined {

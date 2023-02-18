@@ -23,8 +23,7 @@ export default {
     box-shadow: -1px 1px 3px 0px rgb(0 0 0 / 7%);
     max-width: 40%;
     word-break: break-word;
-    padding: 0.5em;
-    padding-left: 1em;
+    padding: 0.5em 1em;
 }
 
 </style>
