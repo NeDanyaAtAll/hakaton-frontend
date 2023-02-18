@@ -22,6 +22,7 @@ import Footer from './components/footer/Footer.vue'
 import { useUserMessagesState } from './stores/useUserMessagesState'
 import InputWithButton from './components/examplesInputs/InputWithButton.vue'
 import InputWithoutButton from "./components/examplesInputs/InputWithoutButton.vue";
+import {onMounted} from "vue";
 
 export default {
   components: {
@@ -34,6 +35,11 @@ export default {
 
   setup:function(){
     const userMessage = useUserMessagesState()
+    
+    onMounted(() => {
+      userMessage.getRemoteMessages();
+    });
+    
     return {userMessage};
   }
 }

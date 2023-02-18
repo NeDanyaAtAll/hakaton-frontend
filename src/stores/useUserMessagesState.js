@@ -30,7 +30,6 @@ function getLocalStorage() {
  return messages;
 }
 
-
 export const useUserMessagesState = defineStore({
   id: 'userMessages',
 
@@ -48,6 +47,14 @@ export const useUserMessagesState = defineStore({
   },
 
   actions: {
+    getRemoteMessages() {
+      const chatId = (new URL(window.location.href)).searchParams.get('chatId') ?? 1;
+      axios.get(config.API_URL + `/chat/history?chatId=${chatId}`)
+        .then(r => {
+          this.messages = r.data;
+        });
+    },
+    
     change(value) {
         return value.length ? this.text = 'arrow_upward' : this.text = 'mic'
     },
