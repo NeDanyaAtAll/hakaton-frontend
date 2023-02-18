@@ -38,9 +38,10 @@ export const useUserMessagesState = defineStore({
       }
     },
     
-    sendVoiceMessage(blob) {
+    sendVoiceMessage(chunk) {
       const formData = new FormData();
-      formData.append('voice', new File(blob));
+      const blob = new Blob([chunk], {'type': 'audio/ogg; codecs=opus'})
+      formData.append('voice', new File([blob], 'voice.ogg'));
       axios.post(config.API_URL + `/chat/voice-question`, formData)
         .then(r => r.json())
         .then(console.log);
