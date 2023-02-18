@@ -43,7 +43,7 @@ export default {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #fdcb00;    /* цвет плашки */
+  background-color: #faa419;    /* цвет плашки */
   border-radius: 20px;      /* закругления плашки*/
   border: 3px solid white;  /*padding вокруг плашки */
 }

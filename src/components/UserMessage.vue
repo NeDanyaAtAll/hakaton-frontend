@@ -20,7 +20,7 @@ export default {
     border-radius: 1em 1em 0 1em;
     margin-left: auto;
     align-items: flex-end;
-    background: #fdcb00;
+    background: #faa419;
     color: #ffffff;
     box-shadow: -1px 1px 3px 0px rgb(0 0 0 / 7%);
     max-width: 40%;
