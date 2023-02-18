@@ -77,12 +77,12 @@ export const useUserMessagesState = defineStore({
       console.log('blob', blob);
       formData.append('voice', file);
       axios.post(config.API_URL + `/chat/voice-question`, formData)
-        .then(r => r.json())
         .then(r => {
-          if (r.success) {
+          console.log(r);
+          if (r.data.success) {
             this.messages.push({
               type: 1,
-              title: r.ans
+              title: r.data.ans
             });
           } else {
             this.messages.push({
