@@ -9,6 +9,10 @@ textarea {
   all: initial;
 }
 
+html {
+  overflow: hidden;
+}
+
 @font-face {
   font-family: 'RosMol'; 
   src: url('../public/fonts/BrandingRosmol/GT-Eesti-LC-Display-Light.otf')  format("opentype"); 
