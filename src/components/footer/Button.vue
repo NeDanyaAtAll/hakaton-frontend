@@ -4,17 +4,15 @@
          @click="userMessages.addUserMessage"
         >
             <span class="material-symbols-outlined">
-                {{ button.text }}
+                {{ userMessages.text }}
             </span>
         </button>
     </div>
 </template>
 
 <script setup>
-import { buttonStore } from "../../stores/button";
 import { useUserMessagesState } from "../../stores/useUserMessagesState";
 
-const button = buttonStore();
 const userMessages = useUserMessagesState();
 
 </script>

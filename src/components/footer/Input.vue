@@ -1,7 +1,7 @@
 <template>
     <div class="input-content">
         <textarea placeholder="Введите сообщение" class="user-message-input" type="text" minlength="1"
-            @input="button.change($event.target.value)"
+            @input="userMessages.change($event.target.value)"
             @keydown.enter="userMessages.addUserMessage($event)"
         ></textarea>
 
@@ -9,9 +9,7 @@
 </template>
 
 <script setup>
-import { buttonStore } from "../../stores/button";
 import { useUserMessagesState } from "../../stores/useUserMessagesState";
-const button = buttonStore();
 const userMessages = useUserMessagesState();
 </script>
 
