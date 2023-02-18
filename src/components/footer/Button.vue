@@ -1,6 +1,8 @@
 <template>
     <div class="input-button">
-        <button type="button">
+        <button type="button"
+         @click="userMessages.addUserMessage"
+        >
             <span class="material-symbols-outlined">
                 {{ button.text }}
             </span>
@@ -10,8 +12,10 @@
 
 <script setup>
 import { buttonStore } from "../../stores/button";
+import { useUserMessagesState } from "../../stores/useUserMessagesState";
 
 const button = buttonStore();
+const userMessages = useUserMessagesState();
 
 </script>
 
@@ -22,25 +26,32 @@ div > button {
 }
 
 div > button:hover{
-    opacity: 0.8;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button > span {
+    padding-top: 5px;
 }
 
 .input-button {
-    margin: 5px;
-    width: 30px;
+    margin: 11px;
+    height: 25px;
+    width: 25px;
     background-color: #faa419;
-    border-radius: 100%;
+    border-radius: 25%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .material-symbols-outlined {
-    font-size: 18px;
-    color: white;
+    font-size: 1.25em;
+    color: #F4F4F4;
     font-variation-settings:
     'FILL' 0,
-    'wght' 250,
+    'wght' 400,
     'GRAD' 0,
     'opsz' 48
 }

@@ -1,8 +1,10 @@
 <template>
     <div class="chat-body-container">
         <div class="chat-content__dialog">
+            <template v-for="(message, id) in userMessages.messages" :key="id">
+                <UserMessage  :title="message"/>
+            </template>
         <ChatMessage :title="'Тестовый ответ чата'"/>
-        <UserMessage :title="'Тестовое сообщение от пользователя'"/>
         <ChatMessage :title="'Тестовый ответ чата тестовый ответ чата тестовый ответ чата и ещё какой-то текст'"/>
         </div>
     </div>
@@ -11,11 +13,16 @@
 <script>
 import ChatMessage from './ChatMessage.vue'
 import UserMessage from './UserMessage.vue'
+import {useUserMessagesState} from '../stores/useUserMessagesState'
 
 export default {
     components: {
         ChatMessage,
-        UserMessage
+        UserMessage,
+    },
+    setup: function() {
+        const userMessages = useUserMessagesState();
+        return {userMessages};
     },
 }
 </script>
@@ -23,17 +30,20 @@ export default {
 <style scoped>
 .chat-body-container {
     flex: 1;
-    overflow-y: scroll;
     margin: 0.5em;
     padding: 0.5em calc(1em + 3px) 0.5em calc(0.5em + 3px);
     overflow-y: auto;
-    
 }
 
 .chat-content__dialog {
     display: flex;
     flex-flow: column;
-    gap: 0.5em;
+    gap: 0.8em;
+    -webkit-animation-name: move;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction:normal;
+  -webkit-animation-timing-function: linear;
 }     
     
 </style>

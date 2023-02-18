@@ -1,40 +1,45 @@
 <template>
     <div class="input-content">
-        <textarea class="user-message-input" type="text" placeholder="Введите сообщение"
+        <textarea placeholder="Введите сообщение" class="user-message-input" type="text" minlength="1"
             @input="button.change($event.target.value)"
+            @keydown.enter="userMessages.addUserMessage($event)"
         ></textarea>
+
     </div>
 </template>
 
 <script setup>
-
 import { buttonStore } from "../../stores/button";
-
+import { useUserMessagesState } from "../../stores/useUserMessagesState";
 const button = buttonStore();
+const userMessages = useUserMessagesState();
 </script>
 
 <style scoped>
 .input-content {
     flex: 1;
-    padding: 6px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
+    border-radius: 10px;
+    display: flex !important;
+    align-items: stretch;
 }
 
 .user-message-input {
-    resize: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 0.5em;
     overflow: hidden;
-    text-align: start;
-    appearance: auto;
+    width: 100%;
+    background-color: #f4f4f4 ;
+    border: none;
+    resize: none;
+    margin: 0.5em;
+    border-radius: 1em;
+    padding-left: 1em;
     cursor: text;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-    font-size: 1em;
-    font-family: inherit;
-    width:100%;
-    height: 50px;
-    box-sizing: border-box;
-    padding: 1.25em;
 }
 </style>

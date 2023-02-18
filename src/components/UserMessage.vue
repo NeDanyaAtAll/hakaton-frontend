@@ -10,7 +10,6 @@ export default {
         title: String,
         default: ''
     }
-   
 }
 </script>
 
@@ -19,7 +18,6 @@ export default {
     font-size: 1em;
     border-radius: 1em 1em 0 1em;
     margin-left: auto;
-    align-items: flex-end;
     background: #faa419;
     color: #ffffff;
     box-shadow: -1px 1px 3px 0px rgb(0 0 0 / 7%);

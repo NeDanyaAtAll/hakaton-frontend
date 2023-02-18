@@ -15,6 +15,4 @@
     height: 50px;
     border-radius: 100%;
 }
-
-
 </style>
