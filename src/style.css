@@ -9,6 +9,10 @@ textarea {
   all: initial;
 }
 
+input {
+  all: unset;
+}
+
 html {
   overflow: hidden;
 }

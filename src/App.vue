@@ -1,10 +1,15 @@
 <template>
-  <div class="main-chat-container">
-    <Header/>
-    <Body/>
-    <Footer/>
-    <div class="error-container" v-if="userMessage.error">
-      {{ userMessage.error }}
+  <div class="main-container">
+    <div class="main-chat-container">
+      <Header/>
+      <Body/>
+      <Footer/>
+      <div class="error-container" v-if="userMessage.error">
+        {{ userMessage.error }}
+      </div>
+    </div> 
+    <div class="examples-container">
+      <InputWithButton/>
     </div>
   </div>
 </template>
@@ -14,19 +19,20 @@ import Header from './components/header/Header.vue'
 import Body from './components/Body.vue'
 import Footer from './components/footer/Footer.vue'
 import { useUserMessagesState } from './stores/useUserMessagesState'
+import InputWithButton from './components/examplesInputs/InputWithButton.vue'
 
 export default {
   components: {
     Header,
     Body,
-    Footer
+    Footer,
+    InputWithButton
   },
 
   setup:function(){
     const userMessage = useUserMessagesState()
     return {userMessage};
   }
-
 }
 </script>
 
@@ -42,6 +48,8 @@ export default {
   font-family: 'RosMol';
   box-shadow: 0px 0px 20px darkgrey;
   font-size: 14px;
+  margin-right: 50px;
+
 }
 
 .error-container {
@@ -51,6 +59,12 @@ export default {
   text-align: left;
   color: #cc0001;
   opacity: 0.7;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 ::-webkit-scrollbar {

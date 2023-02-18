@@ -49,10 +49,6 @@ div > button:hover{
     transition: 0.2s;
 }
 
-button > span {
-    padding-top: 5px;
-    user-select: none;
-}
 
 .input-button {
     margin: 5px;
@@ -68,6 +64,8 @@ button > span {
 }
 
 .material-symbols-outlined {
+    padding-top: 5px;
+    user-select: none;
     font-size: 1.25em;
     color: #F4F4F4;
     font-variation-settings:
