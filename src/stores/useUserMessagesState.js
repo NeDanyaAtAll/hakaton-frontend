@@ -51,7 +51,6 @@ export const useUserMessagesState = defineStore({
             setTimeout(() => {
               container.scrollTop = xH;
             }, 0)
-            console.log(this.messages)
           } else {
             this.messages.push({
               title: 'Извините, но у меня нет ответа на этот вопрос',
@@ -70,25 +69,40 @@ export const useUserMessagesState = defineStore({
     },
     
     sendVoiceMessage(chunk) {
+      let userInput = document.querySelector('.user-message-input');
+      let container = document.querySelector('.chat-body-container')
+      let value = userInput.value.trim();
+      let xH = container.scrollHeight;
       const formData = new FormData();
       const blob = new Blob([chunk], {'type': 'audio/ogg; codecs=opus'});
       const file = new File([blob], 'voice.ogg', {'type': 'audio/ogg; codecs=opus'});
-      console.log('file', file);
-      console.log('blob', blob);
+      this.messages.push({
+        type: 2,
+        title: 'Голосовое сообщение',
+        blob: blob
+      });
+      setTimeout(() => {
+        container.scrollTop = xH;
+      }, 0)
       formData.append('voice', file);
       axios.post(config.API_URL + `/chat/voice-question`, formData)
         .then(r => {
-          console.log(r);
           if (r.data.success) {
             this.messages.push({
               type: 1,
               title: r.data.ans
             });
+            setTimeout(() => {
+              container.scrollTop = xH;
+            }, 0)
           } else {
             this.messages.push({
               type: 1,
               title: 'Мы не знаем ответ на этот вопрос'
             });
+            setTimeout(() => {
+              container.scrollTop = xH;
+            }, 0)
           }
         });
     },
