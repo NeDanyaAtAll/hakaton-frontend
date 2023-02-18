@@ -23,7 +23,7 @@ export default {
     .header-container {
         background-color: #ffffff;
         padding: 5px 10px;
-        color: #fdcb00;
+        color: #faa419;
         display: flex;
         justify-content: space-between;
         align-items: center;

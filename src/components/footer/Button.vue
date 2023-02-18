@@ -28,7 +28,7 @@ div > button:hover{
 .input-button {
     margin: 5px;
     width: 30px;
-    background-color: #fdcb00;
+    background-color: #faa419;
     border-radius: 100%;
     display: flex;
     align-items: center;
