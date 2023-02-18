@@ -11,7 +11,8 @@ export const useUserMessagesState = defineStore({
     error: null,
     isAudioRecording: false,
     mediaRecorder: null,
-    mediaDevices: null
+    mediaDevices: null,
+    answers: [],
   }),
 
   actions: {
@@ -31,6 +32,17 @@ export const useUserMessagesState = defineStore({
         container.scrollTo(0, xH);
         userInput.value = ''
         this.text = 'mic'
+
+        axios.post(config.API_URL + '/chat/message-question', {
+          message: value
+        }).then((r) => {
+          if(r.data.success) {
+            this.answers.push(r.data.ans);
+          } else {
+            this.answers.push('Извините, у меня нет ответа на этот вопрос');
+          }
+        }).catch(e => console.log(e))
+
       } else {
         event.preventDefault();
         this.text = 'mic'

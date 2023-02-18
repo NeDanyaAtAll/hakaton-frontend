@@ -1,11 +1,15 @@
 <template>
     <div class="chat-body-container">
         <div class="chat-content__dialog">
-            <ChatMessage :title="'Тестовый ответ чата'"/>
-            <ChatMessage :title="'Тестовый ответ чата тестовый ответ чата тестовый ответ чата и ещё какой-то текст'"/>
+            
+            <template v-for="answer in userMessages.answers" >
+                <ChatMessage :title="answer"/>
+            </template>
+
             <template v-for="message in userMessages.messages">
                 <UserMessage :title="message"/>
             </template>
+
         </div>
     </div>
 </template>
