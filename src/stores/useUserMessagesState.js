@@ -6,18 +6,46 @@ import MediaRecorder from 'opus-media-recorder';
 // import OggOpusWasm from 'opus-media-recorder/OggOpusEncoder.js';
 // import WebMOpusWasm from 'opus-media-recorder/WebMOpusEncoder.js';
 
+function exportStateToLocalStorage(value) {
+ localStorage.setItem('localState', JSON.stringify(value));
+}
+
+function getLocalStorage() {
+  let messages = [];
+  if (localStorage.getItem('localState')) {
+    let localState = JSON.parse(localStorage.getItem('localState'))
+    for (let message of localState) {
+      if(message.type == 2) {
+        delete message.blob
+        message.type = 0;
+      }
+      messages.push({
+        title: message.title,
+        type: message.type
+      })
+    }
+  } else {
+    messages = [];
+  }
+ return messages;
+}
+
+
 export const useUserMessagesState = defineStore({
   id: 'userMessages',
 
-  state: () => ({
-    text: 'mic',
-    messages: [{title: '', type: 0}],
-    error: null,
-    isAudioRecording: false,
-    mediaRecorder: null,
-    mediaDevices: null,
-    quickQuestions: [], /*['Что должно быть в видео-визитке?']*/
-  }),
+  state: function() {
+    let messages = getLocalStorage()
+    return {
+      text: 'mic',
+      messages: messages,
+      error: null,
+      isAudioRecording: false,
+      mediaRecorder: null,
+      mediaDevices: null,
+      quickQuestions: [], /*['Что должно быть в видео-визитке?']*/
+    }
+  },
 
   actions: {
     change(value) {
@@ -37,7 +65,7 @@ export const useUserMessagesState = defineStore({
           title: value,
           type: 0,
         });
-        
+        exportStateToLocalStorage(this.messages);
         userInput.value = ''
         this.text = 'mic'
         
@@ -62,6 +90,7 @@ export const useUserMessagesState = defineStore({
         title: 'Голосовое сообщение',
         blob: blob
       });
+      exportStateToLocalStorage(this.messages);
       setTimeout(() => {
         container.scrollTop = xH;
       }, 0)
@@ -133,6 +162,7 @@ export const useUserMessagesState = defineStore({
         title: title,
         type: 0,
       });
+      
       this.sendRequestToGetAnswer(title, container, xH);
     },
 
@@ -146,6 +176,7 @@ export const useUserMessagesState = defineStore({
             title:r.data.ans,
             type: 1,
           });
+          exportStateToLocalStorage(this.messages);
           setTimeout(() => {
             container.scrollTop = xH;
           }, 0)
@@ -156,6 +187,7 @@ export const useUserMessagesState = defineStore({
             title: 'Извините, но у меня нет ответа на этот вопрос',
             type: 1,
           });
+          exportStateToLocalStorage(this.messages);
           setTimeout(() => {
             container.scrollTop = xH;
           }, 0)
