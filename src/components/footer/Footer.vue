@@ -4,7 +4,6 @@
             <Input/>
             <Button/>
         </div>
-       
     </div>
 </template>
 
@@ -23,12 +22,13 @@ export default {
 <style scoped>
 .footer-container {
     padding: 10px;
-    background-color: #d78bf7;
+    background-color: #ffffff;
+    border-top:  1px solid #f4f4f4  ;
 }
 
 .footer-input-container {
     border-radius: 10px;
-    background-color: white;
+    background-color: #f4f4f4 ;
     display: flex !important;
     height: 40px;
     align-items: stretch;

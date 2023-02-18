@@ -1,33 +1,42 @@
 <template>
     <div class="input-content">
-        Message
+        <textarea class="user-message-input" type="text" placeholder="Введите сообщение"
+            @input="button.change($event.target.value)"
+        ></textarea>
     </div>
 </template>
 
-<script>
+<script setup>
+
+import { buttonStore } from "../../stores/button";
+
+const button = buttonStore();
 
 </script>
 
 <style scoped>
 .input-content {
     flex: 1;
-    width: 100%;
     padding: 6px;
     overflow: hidden;
-    overflow-y: scroll;
     display: flex;
     align-items: center;
 }
 
-::-webkit-scrollbar {
-    width: 10px;               /* ширина scrollbar */
-}
-::-webkit-scrollbar-track {
-    background: white;        /* цвет дорожки */
-}
-::-webkit-scrollbar-thumb {
-    background-color: #d78bf7;    /* цвет плашки */
-    border-radius: 20px;      /* закругления плашки*/
-    border: 3px solid white;  /*padding вокруг плашки */
+.user-message-input {
+    resize: none;
+    overflow: hidden;
+    text-align: start;
+    appearance: auto;
+    cursor: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    font-size: 1em;
+    font-family: inherit;
+    width:100%;
+    padding: 1.25em;
+    padding-top: 2.5em;
+    padding-left: 0.5em;
+    margin: 0.5em;
 }
 </style>

@@ -24,18 +24,16 @@ export default {
 <style scoped>
 .main-chat-container {
   width: 300px;
-  max-height: 400px;
-  min-height: 400px;
-  border: 2px solid #8c64d8;
-  border-radius: 10px;
+  height: min(450px, 100vh);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   font-family: 'RosMol';
   box-shadow: 0px 0px 20px darkgrey;
+  font-size: 14px;
+  position: relative;
 }
-
 
 ::-webkit-scrollbar {
   width: 10px;               /* ширина scrollbar */
@@ -45,7 +43,7 @@ export default {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #d78bf7;    /* цвет плашки */
+  background-color: #fdcb00;    /* цвет плашки */
   border-radius: 20px;      /* закругления плашки*/
   border: 3px solid white;  /*padding вокруг плашки */
 }

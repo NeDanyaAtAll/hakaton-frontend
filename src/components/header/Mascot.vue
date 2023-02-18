@@ -14,6 +14,7 @@
     width: 50px;
     height: 50px;
     border-radius: 100%;
-    border: 1px solid #8c64d8
 }
+
+
 </style>

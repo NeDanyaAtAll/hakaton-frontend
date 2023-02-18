@@ -3,7 +3,7 @@
         <div class="chat-content__dialog">
         <ChatMessage :title="'Тестовый ответ чата'"/>
         <UserMessage :title="'Тестовое сообщение от пользователя'"/>
-        <ChatMessage :title="'Тестовый ответ чата'"/>
+        <ChatMessage :title="'Тестовый ответ чата тестовый ответ чата тестовый ответ чата и ещё какой-то текст'"/>
         </div>
     </div>
 </template>
@@ -24,10 +24,16 @@ export default {
 .chat-body-container {
     flex: 1;
     overflow-y: scroll;
+    margin: 0.5em;
+    padding: 0.5em calc(1em + 3px) 0.5em calc(0.5em + 3px);
+    overflow-y: auto;
+    
 }
 
 .chat-content__dialog {
-    padding: 5px;
+    display: flex;
+    flex-flow: column;
+    gap: 0.5em;
 }     
     
 </style>

@@ -5,17 +5,13 @@ body{
   justify-content: center;
 }
 
-.message {
-  background-color: whitesmoke;
-  padding: 5px;
-  font-size: 14px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+textarea {
+  all: initial;
 }
 
 @font-face {
   font-family: 'RosMol'; 
-  src: url('../public/fonts/BrandingRosmol/GT-Eesti-LC-Text-Regular.otf')  format("opentype"); 
+  src: url('../public/fonts/BrandingRosmol/GT-Eesti-LC-Display-Light.otf')  format("opentype"); 
 }
 
 @font-face {

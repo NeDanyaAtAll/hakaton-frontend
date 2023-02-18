@@ -21,14 +21,15 @@ export default {
 
 <style scoped>
     .header-container {
-        background-color: #d78bf7;
+        background-color: #ffffff;
         padding: 5px 10px;
-        color: #8c64d8;
+        color: #fdcb00;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: 1.5rem;
+        font-size: 1.5em;
         font-family: 'RosMol-label';
+        border-bottom:  1px solid #f4f4f4  ;
     }
 
     .header-container > span {

@@ -16,8 +16,17 @@ export default {
 
 <style scoped>
 .user-message {
-    border-radius: 10px 10px 10px 0px;
-    margin-left: 25px;
+    font-size: 1em;
+    border-radius: 1em 1em 0 1em;
+    margin-left: auto;
+    align-items: flex-end;
+    background: #fdcb00;
+    color: #ffffff;
+    box-shadow: -1px 1px 3px 0px rgb(0 0 0 / 7%);
+    max-width: 40%;
+    word-break: break-word;
+    padding: 0.5em;
+    padding-left: 1em;
 }
 
 </style>
