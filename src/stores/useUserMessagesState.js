@@ -29,7 +29,7 @@ export const useUserMessagesState = defineStore({
       } else {
         event.preventDefault();
         this.text = 'mic'
-        return this.error = 'Отправлено пустое сообщение'
+        return this.error = 'Попытка отправить пустое сообщение'
       }
     }
   }
