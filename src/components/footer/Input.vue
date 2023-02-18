@@ -1,8 +1,8 @@
 <template>
     <div class="input-content">
-        <input class="user-message-input" type="text" placeholder="Введите сообщение"
+        <textarea class="user-message-input" type="text" placeholder="Введите сообщение"
             @input="button.change($event.target.value)"
-        >
+        ></textarea>
     </div>
 </template>
 
@@ -11,7 +11,6 @@
 import { buttonStore } from "../../stores/button";
 
 const button = buttonStore();
-
 </script>
 
 <style scoped>
@@ -29,12 +28,13 @@ const button = buttonStore();
     text-align: start;
     appearance: auto;
     cursor: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
     font-size: 1em;
     font-family: inherit;
     width:100%;
-    padding: 1.5em;
-    padding-top: 1.5em;
-    padding-left: 0.5em;
-    margin: 0.5em;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 1.25em;
 }
 </style>

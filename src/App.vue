@@ -24,7 +24,7 @@ export default {
 <style scoped>
 .main-chat-container {
   width: 300px;
-  height: min(450px, 100vh);
+  height: min(550px, 100vh);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -46,6 +46,13 @@ export default {
   background-color: #faa419;    /* цвет плашки */
   border-radius: 20px;      /* закругления плашки*/
   border: 3px solid white;  /*padding вокруг плашки */
+}
+
+
+@media screen and (max-width: 600px) {
+  .main-chat-container {
+    height: 100%;
+  }
 }
 
 </style>
