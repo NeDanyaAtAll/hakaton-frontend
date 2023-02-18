@@ -39,7 +39,6 @@ export default {
     const userMessages = useUserMessagesState();
     let showPopper = ref(false);
     const togglePopper = () => {
-      console.log(123);
       showPopper.value = !showPopper.value;
     }
     return {userMessages, showPopper, togglePopper};
