@@ -39,11 +39,6 @@ export default {
     display: flex;
     flex-flow: column;
     gap: 0.8em;
-    -webkit-animation-name: move;
-  -webkit-animation-duration: 1s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-direction:normal;
-  -webkit-animation-timing-function: linear;
 }     
     
 </style>
