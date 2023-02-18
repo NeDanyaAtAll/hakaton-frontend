@@ -1,11 +1,23 @@
 <template>
     <div class="input-button">
         <button type="button"
-         @click="userMessages.addUserMessage"
+          v-if="userMessages.text !== 'mic'"
+          @click="userMessages.addUserMessage"
         >
             <span class="material-symbols-outlined">
                 {{ userMessages.text }}
             </span>
+        </button>
+        <button
+          v-else
+          @click="recordAudio"
+        >
+          <span class="material-symbols-outlined" v-show="!userMessages.isAudioRecording">
+            {{ userMessages.text }}
+          </span>
+          <span class="material-symbols-outlined" v-show="userMessages.isAudioRecording">
+            arrow_upward
+          </span>
         </button>
     </div>
 </template>
@@ -14,6 +26,14 @@
 import { useUserMessagesState } from "../../stores/useUserMessagesState";
 
 const userMessages = useUserMessagesState();
+
+const recordAudio = () => {
+  if (userMessages.isAudioRecording) {
+    userMessages.stopRecording();
+  } else {
+    userMessages.startRecording();
+  }
+}
 
 </script>
 
