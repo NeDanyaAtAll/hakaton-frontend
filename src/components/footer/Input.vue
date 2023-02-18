@@ -33,7 +33,7 @@ const button = buttonStore();
     font-family: inherit;
     width:100%;
     padding: 1.5em;
-    padding-top: 3.25em;
+    padding-top: 1.5em;
     padding-left: 0.5em;
     margin: 0.5em;
 }
