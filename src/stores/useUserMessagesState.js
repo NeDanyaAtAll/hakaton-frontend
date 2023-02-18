@@ -1,6 +1,10 @@
 import { defineStore } from 'pinia'
 import axios from "axios";
 import config from "../config.js";
+import MediaRecorder from 'opus-media-recorder';
+// import EncoderWorker from 'opus-media-recorder/encoderWorker.umd.js';
+// import OggOpusWasm from 'opus-media-recorder/OggOpusEncoder.js';
+// import WebMOpusWasm from 'opus-media-recorder/WebMOpusEncoder.js';
 
 export const useUserMessagesState = defineStore({
   id: 'userMessages',
@@ -67,11 +71,26 @@ export const useUserMessagesState = defineStore({
     
     sendVoiceMessage(chunk) {
       const formData = new FormData();
-      const blob = new Blob([chunk], {'type': 'audio/ogg; codecs=opus'})
-      formData.append('voice', new File([blob], 'voice.ogg'));
+      const blob = new Blob([chunk], {'type': 'audio/ogg; codecs=opus'});
+      const file = new File([blob], 'voice.ogg', {'type': 'audio/ogg; codecs=opus'});
+      console.log('file', file);
+      console.log('blob', blob);
+      formData.append('voice', file);
       axios.post(config.API_URL + `/chat/voice-question`, formData)
         .then(r => r.json())
-        .then(console.log);
+        .then(r => {
+          if (r.success) {
+            this.messages.push({
+              type: 1,
+              title: r.ans
+            });
+          } else {
+            this.messages.push({
+              type: 1,
+              title: 'Мы не знаем ответ на этот вопрос'
+            });
+          }
+        });
     },
     
     stopRecording() {
@@ -79,9 +98,6 @@ export const useUserMessagesState = defineStore({
         return;
       }
       this.isAudioRecording = false;
-      this.mediaRecorder.ondataavailable = (e) => {
-        this.sendVoiceMessage(e.data);
-      }
       this.mediaRecorder.stop();
     },
     
@@ -93,8 +109,15 @@ export const useUserMessagesState = defineStore({
       if (!this.isAudioRecording) {
         navigator.mediaDevices.getUserMedia({audio: true})
           .then(stream => {
-            this.mediaRecorder = new MediaRecorder(stream);
+            this.mediaRecorder = new MediaRecorder(stream, {mimeType: 'audio/ogg'}, {
+              encoderWorkerFactory: _ => new Worker('/scripts/encoderWorker.umd.js'),
+              OggOpusEncoderWasmPath: '/scripts/OggOpusEncoder.wasm',
+              WebMOpusEncoderWasmPath: '/scripts/WebMOpusEncoder.wasm'
+            });
             this.mediaRecorder.start();
+            this.mediaRecorder.ondataavailable = (e) => {
+              this.sendVoiceMessage(e.data);
+            }
             this.isAudioRecording = true;
           });
       }
