@@ -36,6 +36,8 @@ export const useUserMessagesState = defineStore({
       }
     },
     
+    sendW
+    
     stopRecording() {
       if (!this.isAudioRecording) {
         return;

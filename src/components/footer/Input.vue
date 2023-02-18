@@ -80,7 +80,7 @@ const userMessages = useUserMessagesState();
   display: block;
   height: 100px;
   position: absolute;
-  top: -16px;
+  bottom: -20px;
   left: -16px;
 }
 </style>
