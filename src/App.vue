@@ -7,9 +7,10 @@
       <div class="error-container" v-if="userMessage.error">
         {{ userMessage.error }}
       </div>
-    </div> 
+    </div>
     <div class="examples-container">
       <InputWithButton/>
+      <InputWithoutButton style="margin-top: 10px"/>
     </div>
   </div>
 </template>
@@ -20,9 +21,11 @@ import Body from './components/Body.vue'
 import Footer from './components/footer/Footer.vue'
 import { useUserMessagesState } from './stores/useUserMessagesState'
 import InputWithButton from './components/examplesInputs/InputWithButton.vue'
+import InputWithoutButton from "./components/examplesInputs/InputWithoutButton.vue";
 
 export default {
   components: {
+    InputWithoutButton,
     Header,
     Body,
     Footer,

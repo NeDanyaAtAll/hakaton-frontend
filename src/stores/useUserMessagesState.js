@@ -16,7 +16,7 @@ export const useUserMessagesState = defineStore({
     isAudioRecording: false,
     mediaRecorder: null,
     mediaDevices: null,
-    quickQuestions: ['Что должно быть в видео-визитке?']
+    quickQuestions: [], /*['Что должно быть в видео-визитке?']*/
   }),
 
   actions: {

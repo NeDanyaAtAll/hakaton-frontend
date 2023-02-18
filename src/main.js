@@ -11,6 +11,6 @@ const pinia = createPinia()
 
 app.use(VueAxios, axios)
 app.use(pinia)
-app.use("Popper", Popper)
+app.component("Popper", Popper)
 
 app.mount('#app')
