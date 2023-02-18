@@ -7,7 +7,6 @@ import { createPinia } from 'pinia'
 const app = createApp(App);
 const pinia = createPinia()
 
-
 app.use(VueAxios, axios)
 app.use(pinia)
 
