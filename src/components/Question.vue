@@ -1,5 +1,5 @@
 <template>
-    <div class="question">
+    <div class="question" v-show="false">
         {{ title }}
     </div>
 </template>

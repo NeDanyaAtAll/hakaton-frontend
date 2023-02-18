@@ -1,15 +1,15 @@
 <template>
     <div class="chat-body-container">
         <div class="chat-content__dialog">
-            
-            <template v-for="answer in userMessages.answers" >
-                <ChatMessage :title="answer"/>
+            <ChatMessage :title="helloMesage"/>
+            <template v-for="message in userMessages.messages" >
+                <template v-if="message.type == 0 && message.title !== ''">
+                    <UserMessage :title="message.title"/>
+                </template>
+                <template v-if="message.type == 1 && message.title !== ''">
+                    <ChatMessage :title="message.title"/>
+                </template>
             </template>
-
-            <template v-for="message in userMessages.messages">
-                <UserMessage :title="message"/>
-            </template>
-
         </div>
     </div>
 </template>
@@ -28,6 +28,9 @@ export default {
         const userMessages = useUserMessagesState();
         return {userMessages};
     },
+    data: () => ({
+        helloMesage: 'Вас приветсвует голосовой помощник "Цифра"'
+    })
 }
 </script>
 

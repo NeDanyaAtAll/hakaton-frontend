@@ -4,7 +4,7 @@ export const useQuestionsStore = defineStore({
   id: 'questionStore',
 
   state: () => ({
-    titles: ['Тестовый вопросикс от пользователя', 'Тестовый вопросик 2'],
+    titles: ['Что должно быть в видео-визитке?'],
   }),
 
   actions: {

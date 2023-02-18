@@ -7,12 +7,11 @@ export const useUserMessagesState = defineStore({
 
   state: () => ({
     text: 'mic',
-    messages: [],
+    messages: [{title: '', type: 0}],
     error: null,
     isAudioRecording: false,
     mediaRecorder: null,
     mediaDevices: null,
-    answers: [],
   }),
 
   actions: {
@@ -25,11 +24,15 @@ export const useUserMessagesState = defineStore({
       let userInput = document.querySelector('.user-message-input');
       let container = document.querySelector('.chat-body-container')
       let value = userInput.value.trim();
+      let xH = container.scrollHeight;
       if(value.length) {
         event.preventDefault();
-        this.messages.push(value);
-        let xH = container.scrollHeight;
-        container.scrollTo(0, xH);
+        
+        this.messages.push({
+          title: value,
+          type: 0,
+        });
+        
         userInput.value = ''
         this.text = 'mic'
 
@@ -37,12 +40,24 @@ export const useUserMessagesState = defineStore({
           message: value
         }).then((r) => {
           if(r.data.success) {
-            this.answers.push(r.data.ans);
+            this.messages.push({
+              title:r.data.ans,
+              type: 1,
+            });
+            setTimeout(() => {
+              container.scrollTop = xH;
+            }, 0)
+            console.log(this.messages)
           } else {
-            this.answers.push('Извините, у меня нет ответа на этот вопрос');
+            this.messages.push({
+              title: 'Извините, но у меня нет ответа на этот вопрос',
+              type: 1,
+            });
+            setTimeout(() => {
+              container.scrollTop = xH;
+            }, 0)
           }
         }).catch(e => console.log(e))
-
       } else {
         event.preventDefault();
         this.text = 'mic'
