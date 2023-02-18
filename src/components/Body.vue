@@ -9,6 +9,9 @@
                 <template v-if="message.type == 1 && message.title !== ''">
                     <ChatMessage :title="message.title"/>
                 </template>
+                <template v-if="message.type == 2 && message.blob">
+                  <VoiceMessage :title="message.title" :blob="message.blob"/>
+                </template>
             </template>
         </div>
     </div>
@@ -18,9 +21,11 @@
 import ChatMessage from './ChatMessage.vue'
 import UserMessage from './UserMessage.vue'
 import {useUserMessagesState} from '../stores/useUserMessagesState'
+import VoiceMessage from "./VoiceMessage.vue";
 
 export default {
     components: {
+      VoiceMessage,
         ChatMessage,
         UserMessage,
     },
@@ -36,7 +41,7 @@ export default {
 
 <style scoped>
 .chat-body-container {
-    flex: 1; 
+    flex: 1;
     flex-direction: column;
     display: flex;
     justify-content: space-between;
@@ -52,6 +57,6 @@ export default {
     flex-flow: column;
     gap: 0.8em;
     
-}     
-    
+}
+
 </style>
