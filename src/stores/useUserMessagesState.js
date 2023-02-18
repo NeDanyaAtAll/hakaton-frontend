@@ -18,10 +18,9 @@ export const useUserMessagesState = defineStore({
       this.error = null
       let userInput = document.querySelector('.user-message-input');
       let container = document.querySelector('.chat-body-container')
-      let value = userInput.value;
+      let value = userInput.value.trim();
       if(value.length) {
         event.preventDefault();
-
         this.messages.push(value);
         let xH = container.scrollHeight; 
         container.scrollTo(0, xH);

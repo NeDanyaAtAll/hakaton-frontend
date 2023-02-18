@@ -31,6 +31,7 @@ div > button:hover{
 
 button > span {
     padding-top: 5px;
+    user-select: none;
 }
 
 .input-button {

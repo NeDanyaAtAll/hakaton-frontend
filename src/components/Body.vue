@@ -3,8 +3,8 @@
         <div class="chat-content__dialog">
             <ChatMessage :title="'Тестовый ответ чата'"/>
             <ChatMessage :title="'Тестовый ответ чата тестовый ответ чата тестовый ответ чата и ещё какой-то текст'"/>
-            <template v-for="(message, id) in userMessages.messages" :key="id">
-                <UserMessage  :title="message"/>
+            <template v-for="message in userMessages.messages">
+                <UserMessage :title="message"/>
             </template>
         </div>
     </div>
@@ -32,7 +32,7 @@ export default {
     flex: 1;
     margin: 0.5em;
     padding: 0.5em calc(1em + 3px) 0.5em calc(0.5em + 3px);
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .chat-content__dialog {

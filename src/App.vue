@@ -57,6 +57,7 @@ export default {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
+  width: 10px;
   background: white;
 }
 
@@ -65,7 +66,6 @@ export default {
   border-radius: 20px;      /* закругления плашки*/
   border: 3px solid white;  /*padding вокруг плашки */
 }
-
 
 @media screen and (max-width: 600px) {
   .main-chat-container {
