@@ -5,7 +5,7 @@
             @keydown.enter="userMessages.addUserMessage($event)"
         ></textarea>
     </div>
-    <div class="input-content" v-else="userMessages.isAudioRecording">
+    <div class="input-content" v-if="userMessages.isAudioRecording">
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-wave" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
         <circle cx="-13.5" cy="50" r="4" fill="#faa419">
           <animate attributeName="cy" values="46;54;46" times="0;0.5;1" dur="1s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" begin="0s" repeatCount="indefinite"></animate>

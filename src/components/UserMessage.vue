@@ -7,8 +7,10 @@
 <script>
 export default {
     props: {
-        title: String,
-        default: ''
+        title: {
+            type: String,
+            default: ''
+        } 
     }
 }
 </script>

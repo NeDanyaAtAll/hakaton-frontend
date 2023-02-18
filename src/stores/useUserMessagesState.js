@@ -16,6 +16,7 @@ export const useUserMessagesState = defineStore({
     isAudioRecording: false,
     mediaRecorder: null,
     mediaDevices: null,
+    quickQuestions: ['Что должно быть в видео-визитке?']
   }),
 
   actions: {
@@ -40,28 +41,7 @@ export const useUserMessagesState = defineStore({
         userInput.value = ''
         this.text = 'mic'
 
-        axios.post(config.API_URL + '/chat/message-question', {
-          message: value
-        }).then((r) => {
-          if(r.data.success) {
-            this.messages.push({
-              title:r.data.ans,
-              type: 1,
-            });
-            setTimeout(() => {
-              container.scrollTop = xH;
-            }, 0)
-            console.log(this.messages)
-          } else {
-            this.messages.push({
-              title: 'Извините, но у меня нет ответа на этот вопрос',
-              type: 1,
-            });
-            setTimeout(() => {
-              container.scrollTop = xH;
-            }, 0)
-          }
-        }).catch(e => console.log(e))
+        this.sendRequestToGetAnswer(value, container, xH);
       } else {
         event.preventDefault();
         this.text = 'mic'
@@ -121,6 +101,47 @@ export const useUserMessagesState = defineStore({
             this.isAudioRecording = true;
           });
       }
+    },
+
+    quickQuestionAction(title) {
+      let container = document.querySelector('.chat-body-container')
+      let xH = container.scrollHeight;
+
+      if(!title ) {
+        return this.errors = 'Неккоректный запрос'
+      }
+      this.quickQuestions.splice(this.quickQuestions.findIndex(el => el == title), 1)
+
+      this.messages.push({
+        title: title,
+        type: 0,
+      });
+      this.sendRequestToGetAnswer(title, container, xH);
+    },
+
+    sendRequestToGetAnswer(message, container, xH) {
+      axios.post(config.API_URL + '/chat/message-question', {
+        message: message
+      }).then((r) => {
+        if(r.data.success) {
+          this.messages.push({
+            title:r.data.ans,
+            type: 1,
+          });
+          setTimeout(() => {
+            container.scrollTop = xH;
+          }, 0)
+          console.log(this.messages)
+        } else {
+          this.messages.push({
+            title: 'Извините, но у меня нет ответа на этот вопрос',
+            type: 1,
+          });
+          setTimeout(() => {
+            container.scrollTop = xH;
+          }, 0)
+        }
+      }).catch(e => console.log(e))
     }
   }
 })

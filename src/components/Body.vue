@@ -2,7 +2,7 @@
     <div class="chat-body-container">
         <div class="chat-content__dialog">
             <ChatMessage :title="helloMesage"/>
-            <template v-for="message in userMessages.messages" >
+            <template v-for="message in userMessages.messages" :key="message" >
                 <template v-if="message.type == 0 && message.title !== ''">
                     <UserMessage :title="message.title"/>
                 </template>

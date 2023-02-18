@@ -1,7 +1,7 @@
 <template>
     <div class="footer-container">
-        <div class="questions-container" v-show="questions.titles">
-            <template v-for="question in questions.titles">
+        <div class="questions-container" v-show="questions.quickQuestions">
+            <template v-for="question in questions.quickQuestions" :key="question">
                 <Question :title="question"/>
             </template>
         </div>
@@ -16,7 +16,7 @@
 import Button from './Button.vue'
 import Input from './Input.vue'
 import Question from '../Question.vue'
-import {useQuestionsStore} from '../../stores/useQuestionsStore'
+import { useUserMessagesState } from '../../stores/useUserMessagesState'
 
 export default {
     components: {
@@ -25,7 +25,7 @@ export default {
         Question
     },
     setup: function() {
-        const questions = useQuestionsStore();
+        const questions = useUserMessagesState();
         return {questions};
     }
 }
