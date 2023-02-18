@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia'
+import axios from "axios";
+import config from "../config.js";
 
 export const useUserMessagesState = defineStore({
   id: 'userMessages',
@@ -36,7 +38,13 @@ export const useUserMessagesState = defineStore({
       }
     },
     
-    sendW
+    sendVoiceMessage(blob) {
+      const formData = new FormData();
+      formData.append('voice', new File(blob));
+      axios.post(config.API_URL + `/chat/voice-question`, formData)
+        .then(r => r.json())
+        .then(console.log);
+    },
     
     stopRecording() {
       if (!this.isAudioRecording) {
