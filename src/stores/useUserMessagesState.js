@@ -44,14 +44,16 @@ export const useUserMessagesState = defineStore({
           message: value
         }).then((r) => {
           if(r.data.success) {
+            speechSynthesis.speak(new SpeechSynthesisUtterance(r.data.ans));
             this.messages.push({
-              title:r.data.ans,
+              title: r.data.ans,
               type: 1,
             });
             setTimeout(() => {
               container.scrollTop = xH;
             }, 0)
           } else {
+            speechSynthesis.speak(new SpeechSynthesisUtterance('Извините, но у меня нет ответа на этот вопрос'));
             this.messages.push({
               title: 'Извините, но у меня нет ответа на этот вопрос',
               type: 1,
@@ -88,6 +90,7 @@ export const useUserMessagesState = defineStore({
       axios.post(config.API_URL + `/chat/voice-question`, formData)
         .then(r => {
           if (r.data.success) {
+            speechSynthesis.speak(new SpeechSynthesisUtterance(r.data.ans));
             this.messages.push({
               type: 1,
               title: r.data.ans
@@ -96,9 +99,10 @@ export const useUserMessagesState = defineStore({
               container.scrollTop = xH;
             }, 0)
           } else {
+            speechSynthesis.speak(new SpeechSynthesisUtterance('Я не знаю ответ на этот вопрос'));
             this.messages.push({
               type: 1,
-              title: 'Мы не знаем ответ на этот вопрос'
+              title: 'Я не знаю ответ на этот вопрос'
             });
             setTimeout(() => {
               container.scrollTop = xH;
